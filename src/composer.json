@@ -1,0 +1,69 @@
+{
+  "name": "cicd/myreport",
+  "description": "My Report",
+  "version": "1.0.0",
+  "time": "2022-12-13",
+  "require": {
+    "ext-mbstring": "*",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "ext-simplexml": "*",
+    "cicd/lockers": "^1.1.0",
+    "cicd/websocket-client": "~1.1.0",
+    "cicd/html2pdf_client": "~2.0.0",
+    "vlucas/phpdotenv": "^2.4",
+    "aws/aws-sdk-php": "^2.8.31",
+    "phpmailer/phpmailer": "^6.9",
+    "nikic/fast-route": "^1.3",
+    "league/container": "^4.2",
+    "twig/twig": "^3.8",
+    "filp/whoops": "^2.15",
+    "mpdf/mpdf": "8.0.*"
+  },
+  "config": {
+    "gitlab-domains": [
+      "gitlab.cicd.biz"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "Classes\\": "Classes/",
+      "Controller\\": "Controller/",
+      "Facades\\": "Facades/",
+      "Helpers\\": "Helpers/",
+      "Init\\": "Init/",
+      "App\\": "public/",
+      "Repositories\\": "Repositories/",
+      "Routes\\": "Routes/",
+      "Services\\": "Services/",
+      "Session\\": "Session/",
+      "Traits\\": "Traits/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "gitlab",
+      "url": "https://gitlab.cicd.biz/cicd/authentification/client"
+    },
+    {
+      "type": "gitlab",
+      "url": "https://gitlab.cicd.biz/cicd/websocket/client"
+    },
+    {
+      "type": "gitlab",
+      "url": "https://gitlab.cicd.biz/cicd/html2pdf/client"
+    }
+  ],
+  "scripts": {
+    "pre-update-cmd": [
+      "rm -Rf vendor/cicd/websocket/client",
+      "rm -Rf vendor/cicd/html2pdf/client"
+    ],
+    "post-update-cmd": [
+      "# WEBSOCKET SERVER CLIENT #############################################",
+      "./install_plugin.sh cicd/websocket-client PUSH_SERVER_CLIENT force-install",
+      "# HTML2PDF ############################################################",
+      "./install_plugin.sh cicd/html2pdf_client HTML2PDF_CLIENT force-install"
+    ]
+  }
+}

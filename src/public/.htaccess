@@ -1,0 +1,13 @@
+# Réécriture de l'URL
+RewriteEngine On
+
+# Si l'URL demandée ne correspond pas à un chemin de fichier existant, on applique la règle de redirection
+# Permet de rendre les JS|CSS|IMG sans rediriger les appels vers index
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
+# Autorisation pour l'accès cross-origin
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, DELETE, OPTIONS"
+Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"

@@ -1,0 +1,149 @@
+<style>
+    {{setStyles()}}
+</style>
+
+<div id="module-commentaire">
+    <div id="info-cabinet-print">
+        <div style="width: 50%;float: left;">
+            <div>{{ session(["station_STA_SARL"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}</div>
+            <div>{{ session(["station_STA_ADR1"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}</div>
+            <div>
+                {{ session(["station_STA_CP"]) }}
+                {{ session(["station_STA_VILLE"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}
+            </div>
+            <div>
+                G&eacute;rant :
+                {{ session(["station_STA_GERANT"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}
+            </div>
+            <div>
+                {{ session(["station_STA_TEL"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}
+                -
+                {{ session(["station_STA_MAIL"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}
+            </div>
+        </div>
+        {% if cabinetComptable %}
+            <div style="width: 50%;float: left;">
+                <div>{{ cabinetComptable.CAB_NOM|convert_encoding('UTF-8','ISO8859-1') }}</div>
+                <div>{{ cabinetComptable.CAB_ADR1 | convert_encoding('UTF-8', 'ISO 8859-1') }}</div>
+                <div>
+                    {{ cabinetComptable.CAB_CP }}
+                    {{ cabinetComptable.CAB_VILLE | convert_encoding('UTF-8', 'ISO 8859-1') }}
+                </div>
+                <div>
+                    Collaborateur :
+                    {{ cabinetComptable.CC_NOM | convert_encoding('UTF-8', 'ISO 8859-1') }}
+                </div>
+                <div>{{ cabinetComptable.CC_MAIL | convert_encoding('UTF-8', 'ISO 8859-1') }}</div>
+            </div>
+        {% endif %}
+    </div>
+    <div id="page-print">
+        <div id="page-container">
+            {% for section, mesStructures in commentaires.structures %}
+                <div class="title">{{ section | upper | replace({"-" : " "}) }}</div>
+                <div class="content-commentaire">
+                    {% for structure in mesStructures %}
+                        <div class="group">
+                            <div class="title-group">{{ structure.CMS_CATEGORIE | convert_encoding('UTF-8', 'ISO 8859-1') }}</div>
+                            <div class="cml cml-print">
+                                <div class="fixe_month">
+                                    {% if structure.type == "liste" %}
+                                        <ul>
+                                            {% for content in structure.contents %}
+                                                <li>{{ content | raw }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% elseif  structure.type == "table" %}
+                                        {% for content in structure.contents %}
+                                            <h4>{{ content.titre | raw }}</h4>
+                                            <table class="tabCommentaire">
+                                                <tr class="EnteteTab">
+                                                    {% for index, entete in content.entete %}
+                                                        <th style="{% if index != 0 %}width:100px;{% endif %}">{{ entete | raw }}</th>
+                                                    {% endfor %}
+                                                </tr>
+                                                {% for ligne in content.lignes %}
+                                                    <tr>
+                                                        {% for index, case in ligne %}
+                                                            <td class="{% if index != 0 %}right{% endif %}">{{ case | convert_encoding('UTF-8', 'ISO 8859-1') | raw }}</td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                {% endfor %}
+                                            </table>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>{{ structure.contents | raw }}</p>
+                                    {% endif %}
+                                </div>
+                                {% for commentaire in structure.commentaires %}
+                                    <div id="CML{{ commentaire.CML_ID }}" class="cml-group">
+                                        <div class="intitule">
+                                            <label id="CML_INTITULE_{{ commentaire.CML_ID }}"
+                                                   for="{{ commentaire.CML_ID }}">{{ commentaire.CML_INTITULE }}</label>
+                                        </div>
+                                        <div class="fixe">
+                                            <div id="CML_COMMENTAIRE_{{ commentaire.CML_ID }}" class="commentaire"
+                                                 style="height:25px">
+                                                <p>{{ commentaire.CML_COMMENTAIRE | raw }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            {% if structure.sousCommentaires %}
+                                <div class="cmt">
+                                    <div class="title-cmt">Commentaires du tableau de
+                                        {{ structure.typeCommentaires }}</div>
+                                    <div class="cmt-block">
+                                        {% for commentaire in structure.sousCommentaires %}
+                                            <div id="" class="cmt-content">
+                                                <div class="poste">
+                                                    <div class="intitule">
+                                                        <label>{{ commentaire.poste.Libelle | convert_encoding('UTF-8', 'ISO 8859-1') }}
+                                                            :
+                                                            <b>
+                                                                {{ commentaire.poste.resultat | number_format(2, ',', ' ') }}
+                                                                €
+                                                            </b>
+                                                        </label>
+                                                    </div>
+                                                    <div class="saisie">
+                                                        <div id="{{ commentaire.poste.commentaire.CMT_ID }}"
+                                                             class="commentaire" style="height:0px">
+                                                            <p>{{ commentaire.poste.commentaire.CMT_COMMENTAIRE | raw }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </br>
+                                                <div class="comptes">
+                                                    <div class="cmt-group">
+                                                        {% for compte in commentaire.comptes %}
+                                                            <div class="intitule">
+                                                                <label>{{ compte.libelle | convert_encoding('UTF-8', 'ISO 8859-1') }}
+                                                                    :
+                                                                    <b>
+                                                                        {{ compte.resultat | number_format(2, ',', ' ') }}
+                                                                        €
+                                                                    </b>
+                                                                </label>
+                                                            </div>
+                                                            <div class="saisie">
+                                                                <div id="" class="commentaire" style="height:25px">
+                                                                    <p>{{ compte.commentaire.CMT_COMMENTAIRE | raw }}</p>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

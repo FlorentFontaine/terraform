@@ -1,0 +1,38 @@
+<div>
+    <p class="center hintText pt-0">Astuce ! Une fois le commentaire saisi, surlignez tout ou partie pour afficher la barre d'outils !</p>
+    {% if detail.poste.libelle %}
+        {% include "Modules/Commentaire/_tableTemplate.html.twig" %}
+    {% else %}
+        {% include "Modules/Commentaire/_libreTemplate.html.twig" %}
+    {% endif %}
+    
+</div>
+
+<script type="text/javascript">
+$(function(){
+    $('.summernote').summernote({
+        airMode: true,
+        tabsize: 2,
+        height: 120,
+        focus: true,
+        inheritPlaceholder: false,
+        blockquoteBreakingLevel: 0,
+        popover: {
+            air: [
+                ['font', [
+                    'bold', 'underline', 'clear'
+                ]],
+                ['color', [
+                    'color'
+                ]],
+                ['para', [
+                    'ul', 'ol', 'paragraph', 'hr'
+                ]],
+                ['table', [
+                    'table'
+                ]],
+            ]
+        },
+    });
+})
+</script>

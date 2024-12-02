@@ -1,0 +1,5 @@
+<input type="text" name="title" value="{{ detail.CML_INTITULE ?? '' }}" placeholder="Titre" class="titre-note-editable custom-input-text"></input>
+
+<div class="summernote">{{ detail.CML_COMMENTAIRE | raw }} </div>
+
+<input type='hidden' name='id' value='{{ detail.CML_ID ?? 'new' }}'>

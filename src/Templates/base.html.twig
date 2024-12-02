@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %} | My Report</title>
+    <link rel="stylesheet" href="/style.css" type="text/css"/>
+    <link rel="icon" type="image/png" href="../images/favicon/favicon.ico">
+</head>
+
+<body>
+
+{% include '_Partials/assets.html.twig' %}
+{% include '_Partials/header.html.twig' %}
+
+{% if (session.getFlash('success')) %}
+    <h1 style="color: green;">{{ session.getFlash('success') }}</h1>
+{% endif %}
+{% if (session.getFlash('danger')) %}
+    <h1 style="color: red;">{{ session.getFlash('danger') }}</h1>
+{% endif %}
+
+<main>
+    {% block main %}
+    {% endblock %}
+</main>
+
+{% include '_Partials/footer.html.twig' %}
+
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $(function() {
+            loadTooltipPoste();
+        });
+    </script>
+{% endblock %}
+
+</body>
+</html>

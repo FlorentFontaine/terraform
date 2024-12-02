@@ -1,0 +1,12 @@
+../terraform/.idea/
+../myreport/docker-compose.yml
+.DS_Store
+src/auth.json
+src/.env.override
+src/composer.lock
+src/vendor/
+src/public/HTML2PDF_CLIENT/
+src/public/PUSH_SERVER_CLIENT/
+.terraform
+terraform.tfvars
+.env

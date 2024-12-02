@@ -1,0 +1,54 @@
+<div id="tetepage">
+	{% if EntetePiedFalse == false %}
+		<div style="width:100%; height:85px; background:#eeeeee">
+			<a href="/StationBack/Liste.php" style="text-decoration: none;">
+				<img src="/images/logo_myreport.png" alt="logo" style="height:75%; margin: 8px 14px;vertical-align: middle;">
+			</a>
+			<span style="margin-left: 10px;padding-bottom: 10px;color:#23316F;">
+				{{ session(['Utilisateur', 'Prenom']) ~ " " ~ session(['Utilisateur', 'Nom']) | upper }}
+				{{ " - " ~ session(['Utilisateur', 'Type']) }}
+				{% if session(['Utilisateur', 'Mail']) != session(['LOCKERS_MAIL']) %}
+					<span style='color:orange;margin-left:5px;'>(ADMIN)</span>
+				{% endif %}
+			</span>
+			{% if session(['station_STA_NUM']) %}
+				<fieldset id="sarlEntete">
+					<legend>Informations :</legend>
+					<table>
+						<tr>
+							<td>PDV :</td>
+							<td>{{ session(['station_LIE_NOM']) }}</td>
+							<td colspan="2">Exercice :
+								<span>
+									{{ session(['station_DOS_DEBEX']) | date("d/m/Y") }}
+									au
+									{{ session(['station_DOS_FINEX']) | date("d/m/Y") }}
+								</span>
+							</td>
+						</tr>
+						<tr>
+							<td>Soci&eacute;t&eacute; :</td>
+							<td>{{ session(['station_STA_SARL']) }}</td>
+							<td>Nombre de mois trait&eacute;s :
+							</td>
+							<td>{{ session(['NbMois']) }}</td>
+						</tr>
+					</table>
+				</fieldset>
+			{% endif %}
+		</div>
+
+		{% include 'Layouts/navbar.html.twig' %}
+
+	{% endif %}
+</div>
+
+{% if impression == false %}
+	<div id="corp" {% if CloseWindow and impression %} style="display: none;" {% endif %}>
+	{% endif %}
+
+    <div style="position: fixed; border-radius: 5px; right: 20px; margin: 10px; background-color: green; color: white; font-size: 12px;font-weight: bolder; padding: 8px 14px; display: none; z-index: 9999999" id="Enregistrement">
+        Enregistrement effectu&eacute;
+    </div>
+	<div id="SuiviBilan" class="none"></div>
+	<div id="EttendeurImp"></div>

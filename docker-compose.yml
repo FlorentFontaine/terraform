@@ -1,0 +1,49 @@
+version: "3"
+services:
+  application:
+    image: myreport
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+      - maildev
+    depends_on:
+      - maildev
+    environment:
+      - APP_NAME=MyReport
+      - DEV_MODE=1
+      - APACHE_ACCESS_LOG_STDOUT=0
+      - PHP_MAX_INPUT_VARS=2000
+      # BDD - DBConnector
+      - APP_DB_HOSTNAME=10.5.0.13
+      - APP_DB_PORT=3404
+      - APP_DB_NAME=myreport
+      - APP_DB_USERNAME=root
+      - APP_DB_PASSWORD=root
+      ##### Websocket and Push
+      - APP_PUSH_SERVER_URL=https://websocket.cicd.biz
+      - APP_PUSH_SERVER_API_URL=https://websocket.cicd.biz/api/v1
+      - APP_PUSH_SERVER_API_SHARED_SECRET=7d34ab69aee975fb21b52559b23f5fc3
+      - APP_HTML2PDF_SERVER_URL=https://print.cicd.biz
+      - APP_HTML2PDF_AUTH_PASSWD=e545abca51a4d93ba5333c04caf8803f
+      # SMTP
+      - APP_SMTP_HOSTNAME=maildev
+      - APP_SMTP_USERNAME=
+      - APP_SMTP_PASSWORD=
+      # S3
+      - APP_AWS_ACCESS_KEY_ID=
+      - APP_AWS_SECRET_ACCESS_KEY=
+      - APP_S3_BUCKET=
+      - APP_S3_PREFIX=
+      # Lockers
+      - APP_LOCKERS_URL=https://lockers.cicd.biz
+      - APP_LOCKERS_CLIENT_ID=33
+    volumes:
+      - ./src:/app/
+    ports:
+      - "9090:80"
+  maildev:
+    restart: always
+    image: djfarrelly/maildev
+    ports:
+      - "1087:80"

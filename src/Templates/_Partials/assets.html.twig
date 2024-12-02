@@ -1,0 +1,144 @@
+
+
+<!---------   JS   --------->
+
+<!-- jQuery -->
+<script type="text/javascript" src="/javascript/jquery/jquery-3.7.1.min.js"></script>
+
+<!-- jQuery UI-->
+<script type="text/javascript" src="/javascript/jquery-ui/jquery-ui.min-1.13.2.js"></script>
+
+<!-- Push server client -->
+<!-- TODO mettre en place une vraie solution pour les assets et le cache busting -->
+{#<script src="{{ cache(asset('PUSH_SERVER_CLIENT/js/push-server-client.js')) }}"></script>#}
+<script src="/PUSH_SERVER_CLIENT/js/push-server-client.js"></script>
+
+<!-- Print server client -->
+<!-- TODO mettre en place une vraie solution pour les assets et le cache busting -->
+{#<script src="{{ cache(asset('HTML2PDF_CLIENT/js/print.js')) }}"></script>#}
+<script src="/HTML2PDF_CLIENT/js/print.js"></script>
+
+<!-- Applicatif -->
+<script type="text/javascript" src="/javascript/javascript.js"></script>
+
+<!---------   CSS  --------->
+
+<!-- jQuery UI-->
+<link rel="stylesheet" type="text/css" href="/javascript/jquery-ui/jquery-ui.min-1.13.2.css">
+
+<!-- Applicatif -->
+<!-- TODO mettre en place une vraie solution pour les assets et le cache busting -->
+{#<link rel="stylesheet" type="text/css" href="{{ cache(asset('style.css')) }}">#}
+{#<link rel="stylesheet" type="text/css" href="{{ cache(asset('print.css')) }}" media="print">#}
+<link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/print.css" media="print">
+
+
+<script type="text/javascript">
+    function InitDocument() {
+        $("[date]").each(function () {
+            if (!$(this).val()) {
+                $(this).val("jj/mm/aaaa");
+                $(this).css("color", "gray");
+
+                $(this).focus(function () {
+                    if ($(this).val() === "jj/mm/aaaa") {
+                        $(this).val("");
+                    }
+
+                    $(this).css("color", "black");
+                }).select(function () {
+                    if ($(this).val() === "jj/mm/aaaa") {
+                        $(this).val("");
+                    }
+
+                    $(this).css("color", "black");
+                }).blur(function () {
+                    if (!$(this).val()) {
+                        $(this).val("jj/mm/aaaa");
+                        $(this).css("color", "gray");
+                    }
+                });
+            }
+        });
+
+        $('tr[class="bdligneimpaireTD.').hover(function () {
+            $(this).addClass("trHover");
+        }, function () {
+            $(this).removeClass("trHover");
+        });
+
+        $('tr[class="bdlignepaireTD.').hover(function () {
+            $(this).addClass("trHover");
+        }, function () {
+            $(this).removeClass("trHover");
+        });
+
+        $("input[class='submit']").mousedown(function () {
+            $(this).removeClass("submit_clicked").addClass("submit_clicked");
+        });
+
+        $("input[class='submit']").mouseout(function () {
+            $(this).removeClass("submit_clicked");
+        });
+
+        $("form").change(function () {
+            $(this).find("input:enabled:visible[type=submit]").each(function () {
+                if ($(this).val() === "Enregistrer") {
+                    $(this).css("color", "red");
+                }
+            });
+        });
+    }
+
+    $(function () {
+        InitDocument();
+    });
+
+    window.onload = function () {
+        {% if Enregistrement %}
+            document.getElementById('Enregistrement').style.display = 'block';
+            window.setTimeout(function () {
+                document.getElementById('Enregistrement').style.display = 'none';
+            }, 3000);
+        {% endif %}
+
+        {% if impression == false %}
+            document.getElementById('corp').style.display = 'block';
+        {% endif %}
+
+        {% if impression %}
+            window.print();
+        {% endif %}
+
+        {% if loadhref %}
+            window.setTimeout(function () {
+                window.location.href = {{ loadhref }}
+            }, 1000);
+        {% endif %} 
+    }
+
+    {% if session(['station_DOS_NUM']) and impression == false %}
+        window.onbeforeprint = function () {
+            customAlert(
+                "Impression",
+                "Utilisez le menu Impression -> Liste pour imprimer les etats",
+                function () {
+                    window.location.href = "../ImprimBack/Liste.php";
+                });
+        }
+    {% endif %}
+</script>
+
+{% if modules.commentaire %}
+    <script src="/javascript/Modules/Commentaire/commentaire.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			commentaire.load();
+		})
+	</script>
+    <div id="commentaires">
+    </div>
+{% endif %}

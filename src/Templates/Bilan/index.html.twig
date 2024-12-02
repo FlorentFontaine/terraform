@@ -1,0 +1,76 @@
+{% extends('base.html.twig') %}
+
+{% block title "Bilan" %}
+
+{% block main %}
+
+    <div class="content">
+        <table class="tabBalance" dir="IMP_PDF;ORIENTATION:LANDSCAPE;TITLETABLE:BILAN;FONT_SIZE:10;EXTANDTABLE:1;BORDER:1;FITHEIGHT:1;HEIGHT:21;FREEZEPLAN:A5;FITWIDTH:1" id="tab_Bilan">
+            <thead>
+                <tr>
+                    <td class="EnteteTab TitreTable" style="text-align:center;font-weight:bold;border:none;height:15px;">
+                        {{ "BILAN - " ~ session(["MoisHisto"]) | date("m/Y")~ " - " ~ session(["station_BALI_TYPE_exp"]) }}
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="content">
+        <table class="tabBalance bilan">
+            <tr class="EnteteTab">
+                <td libelle="1" class="tdfixe">Libell&eacute;</td>
+                <td class="tdfixe">
+                    <div class="div90"></div>
+                    Brut
+                </td>
+                <td class="tdfixe">
+                    <div class="div90"></div>
+                    Amor/Prov
+                </td>
+                <td class="tdfixe">
+                    <div class="div90"></div>
+                    Net
+                </td>
+            </tr>
+            <tbody>
+                {% set i = 0 %}
+                {% for posteActif in mesPostesActif %}
+                    {% set class = i % 2 ? "bdligneimpaireTD" : "bdlignepaireTD" %}
+                    <tr>
+                        <td class="{{ class }} {{ posteActif.class }}">{{ posteActif.libelle  | convert_encoding('UTF-8', 'ISO 8859-1') | raw }}</td>
+                        <td class="right {{ class }} {{ posteActif.class }}">{{ posteActif.brut ? posteActif.brut | number_format(0, ',', ' ') : "" }}</td>
+                        <td class="right {{ class }} {{ posteActif.class }}">{{ posteActif.amort ? posteActif.amort | number_format(0, ',', ' ') : "" }}</td>
+                        <td class="right {{ class }} {{ posteActif.class }}">{{ posteActif.net ? posteActif.net | number_format(0, ',', ' ') : "" }}</td>
+                    </tr>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </tbody>
+        </table>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <table class="tabBalance bilan">
+            <tr class="EnteteTab">
+                <td class="tdfixe" >
+                    <div class="div90"></div>
+                    Libell&eacute;
+                </td>
+                <td class="tdfixe" >
+                    <div class="div90"></div>
+                    Net
+                </td>
+            </tr>
+            <tbody>
+                {% set i = 0 %}
+                {% for postePassif in mesPostesPassif %}
+                {% set class = i % 2 ? "bdligneimpaireTD" : "bdlignepaireTD" %}
+                    <tr>
+                        <td class="{{ class }} {{ postePassif.class }}">{{ postePassif.libelle  | convert_encoding('UTF-8', 'ISO 8859-1') | raw }}</td>
+                        <td class="right {{ class }} {{ postePassif.class }}">{{ postePassif.net ? postePassif.net | number_format(0, ',', ' ') : "" }}</td>
+                    </tr>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

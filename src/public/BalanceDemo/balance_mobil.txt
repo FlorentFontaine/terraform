@@ -1,0 +1,218 @@
+1013900	"Capital social"	0	0	-250000	0
+1061000	"Réserves légales"	0	0	-25000	0
+1100000	"Report à nouveau créditeur"	0	0	-195323.98	0
+1310000	"Subventions d'investissements"	0	0	-25361	0
+1391000	"Subv. d'invest. inscrites à rés."	0	0	16205	0
+1640500	"Emprunt N° 4 >1 an"	0	0	-18446.94	0
+1681100	"Autres emprunts N° 2 >1 an"	0	0	-10268.46	0
+2070000	"Fonds commercial"	0	0	250000	0
+2140000	"Constructions sur sol d'autrui"	0	0	88363.18	0
+2154000	"Matériel industriel"	0	0	36369.63	0
+2181000	"Agencements divers"	0	0	122568.13	0
+2182000	"Matériel de transport"	0	0	8333.33	0
+2183000	"Matériel de bureau"	0	0	1954.42	0
+2389000	"Avances acomptes immo. corporelles"	0	0	70324.6	0
+2814000	"Amortissements constructions sur sol d'autrui"	0	0	-37277.17	0
+2815400	"Amort. des matériels industriels"	0	0	-31297.71	0
+2818100	"Amortis. agencements divers"	0	0	-61087.97	0
+2818200	"Amortissements matériel de transport"	0	0	-8333.33	0
+2818300	"Amortissements matériel de bureau"	0	0	-1688.38	0
+3710040	"Stock fioul"	0	0	4259.17	0
+3710100	"Stock huiles"	0	0	3624.33	0
+3710210	"Stock gaz"	0	0	5431.07	0
+3710220	"Stock AD Blue hors mandat"	0	0	589.44	0
+3710250	"Stock pneus"	0	0	72.2	0
+3710260	"Stock batteries"	0	0	361.55	0
+3710300	"Stock accessoires boutiques auto"	0	0	3437.25	0
+3710490	"Stock radio K7 CB"	0	0	284.28	0
+3710500	"Stock alimentation TR"	0	0	966.54	0
+3710510	"Stock confiserie bonbons TN"	0	0	1222.3	0
+3710900	"Stock boissons sans alcool 5,5"	0	0	876.55	0
+3710940	"Stock boissons alcoolisées TN"	0	0	2006.63	0
+3711030	"Stock produits frais TSR"	0	0	418.01	0
+3711031	"Stock produits frais TR7"	0	0	130.6	0
+3711050	"Stock sandwiches"	0	0	13.88	0
+3711320	"Stock bazar, hygiène santé TN"	0	0	3213.48	0
+3711321	"Stock bazar, hygiène santé TR"	0	0	233	0
+3711340	"Stock produits d'entretien auto"	0	0	4246.7	0
+3711450	"Stock bois"	0	0	24.3	0
+3711940	"Stock cartes téléphone"	0	0	39.33	0
+4011000	"Fournisseurs collectifs"	0	0	-38116.12	0
+4081020	"CAP autres loyers"	0	0	-2916.67	0
+4081040	"CAP EDF"	0	0	-610	0
+4081050	"CAP eau"	0	0	-570	0
+4081070	"CAP honoraires comptables"	0	0	0	0
+4081230	"CAP budget publicité"	0	0	0	0
+4096000	"Créances emballages à rendre"	0	0	0	0
+4096210	"Consigne gaz"	0	0	0	0
+4110000	Clients	0	0	18901.87	0
+4191000	"Clients avances et acomptes"	0	0	-20728.2	0
+4210000	"Rémunérations dûes"	0	0	0	0
+4250000	"Personnel - avances"	0	0	38.16	0
+4282000	"Provisions pour congés payés"	0	0	-7017.75	0
+4310000	URSSAF	0	0	-3371.96	0
+4374400	IRSACM	0	0	-2178.67	0
+4382000	"Charges sociales sur congés payés"	0	0	-1046.54	0
+4386300	"Ch à payer taxe d'apprentissage"	0	0	-36.37	0
+4386400	"Ch à payer formation continue"	0	0	-518.11	0
+4421000	"Prélèvements à la source (IR)"	0	0	-129.56	0
+4440000	"Impôt sur les bénéfices"	0	0	32155	0
+4455000	"TVA à décaisser"	0	0	-4186.85	0
+4456200	"TVA sur immobilisations"	0	0	0	0
+4456600	"TVA sur achats"	0	0	80.95	0
+4457110	"TVA collectée 5,5"	0	0	0	0
+4457150	"TVA collectée 20"	0	0	0	0
+4457160	"TVA collectée 10"	0	0	0	0
+4458000	"TVA à régulariser"	0	0	357.71	0
+4458600	"TVA / factures non parvenues"	0	0	774.64	0
+4486100	"Charges à payer taxe professionnelle"	0	0	-2987	0
+4551000	"Compte courant d'associés"	0	0	-80896.72	0
+4674000	"Créditeurs divers A"	0	0	271.41	0
+4674100	"Commission relais colis"	0	0	753.39	0
+4674400	"Compte mandat SAFAA"	0	0	0	0
+4675060	"Compte mandat lavages"	0	0	-1590	0
+4675100	"Carburants prélèvement émis"	0	0	-90	0
+4686000	"Charges à payer"	0	0	-183330.83	0
+4687100	"Commissions carburant à recevoir"	0	0	21271.24	0
+4687200	"Commissions lavages à recevoir"	0	0	0	0
+4710000	"Compte d 'attente"	0	0	731.68	0
+4711000	"Bons gr cartes déductibles"	0	0	-0.18	0
+4861080	"Assurances C.C.A."	0	0	5404.26	0
+4861250	"Garanties C.C.A."	0	0	991.67	0
+5121000	"Banque A"	0	0	264711.96	0
+5310000	Caisse	0	0	768.93	0
+5310010	"Fonds de caisse"	0	0	1	0
+5803300	"Virements internes autres cartes"	0	0	-25	0
+6061000	Electricité	0	0	6887.81	0
+6061100	"Achats non stockés eau"	0	0	1648.34	0
+6063000	"Achats fournitures et petits mat."	0	0	1977.99	0
+6063100	"Achats non stockés produits d'entr."	0	0	266.42	0
+6064000	"Fournitures administratives"	0	0	63.26	0
+6064100	"Fournitures informatiques"	0	0	733.33	0
+6065000	"Vêtements du travail"	0	0	1309.29	0
+6068000	"Fournitures consommables"	0	0	632.32	0
+6068010	"Achats fournitures de lavages"	0	0	3834.47	0
+6070010	"Achats carburant"	0	0	4416439.3	0
+6070040	"Achats fioul"	0	0	13740.59	0
+6070100	"Achats huiles"	0	0	9183.03	0
+6070150	"Achats autres forfaits"	0	0	18.94	0
+6070210	"Achats gaz"	0	0	91109.15	0
+6070220	"Achats AD Blue hors mandat"	0	0	17355.84	0
+6070260	"Achats batteries"	0	0	509.61	0
+6070300	"Achats accessoires boutiques auto"	0	0	5271.59	0
+6070400	"Achats radio K7 CB"	0	0	1254.86	0
+6070500	"Achats alimentation TR"	0	0	7187.19	0
+6070510	"Achats confiserie bonbons TN"	0	0	5285.29	0
+6070900	"Achats boissons sans alcool 5,5"	0	0	12054.13	0
+6070940	"Achats boissons alcoolisées TN"	0	0	11361.76	0
+6071030	"Achats produits frais TSR"	0	0	3999.96	0
+6071031	"Achats produits frais TR7"	0	0	370.12	0
+6071050	"Achats sandwiches"	0	0	1617.98	0
+6071320	"Achats bazar, hygiène, santé TN"	0	0	3801.82	0
+6071321	"Achats bazar, hygiène, santé TR"	0	0	61.8	0
+6071340	"Achats produits d'entretien auto"	0	0	6288.28	0
+6071450	"Achats bois"	0	0	862.19	0
+6097000	"Rabais remises ristournes obtenus"	0	0	-860.68	0
+6132000	"Loyer logement"	0	0	35000.04	0
+6132100	"Redevance pétrolière fixe"	0	0	13015.92	0
+6132200	"Redevance pétrolière variable"	0	0	14.99	0
+6132250	"Redevance matériel informatique"	0	0	948	0
+6132300	"Autres loyers"	0	0	2916.67	0
+6135110	"Location distributeur automatique"	0	0	1140	0
+6135140	"Location lavage HP"	0	0	1200	0
+6135150	"Location alarme"	0	0	569.92	0
+6152000	"Entret réparation biens immobiliers"	0	0	722.79	0
+6152100	"Entretien des espaces verts"	0	0	438.5	0
+6155120	"Maintenance portique de lavage"	0	0	698.02	0
+6155140	"Entretien Extincteur"	0	0	113.15	0
+6155200	"Entretien matériel roulant"	0	0	381.7	0
+6156000	"Maintenance et contrat d'entretien"	0	0	3202.37	0
+6161000	"Assurances multirisques"	0	0	9887.38	0
+6162000	"Autres assurances"	0	0	203	0
+6170000	"Etudes et recherche"	0	0	10251.7	0
+6226000	"Honoraires comptables"	0	0	7043	0
+6226100	"Honoraires juridiques"	0	0	200	0
+6227000	"Frais d 'actes"	0	0	50	0
+6231000	"Annonces insertions"	0	0	348	0
+6231100	"Publicité jeux compagnie TN"	0	0	1333.22	0
+6232000	"Cadeaux de la carte club"	0	0	1056	0
+6234000	"Cadeaux clientèles"	0	0	249.99	0
+6234500	"Offres clients (boisson, repas...)"	0	0	25.23	0
+6238000	"Pourboires et dons"	0	0	4557.8	0
+6251000	"Voyages et déplacement direction"	0	0	2705.6	0
+6261000	"Frais postaux"	0	0	118.8	0
+6262000	Téléphone	0	0	2457.5	0
+6278000	"Services bancaires divers"	0	0	737.32	0
+6278100	"Frais cartes de crédit"	0	0	13888.92	0
+6281000	"Cotisations diverses"	0	0	779	0
+6333000	"Formation continue"	0	0	1214.11	0
+6335000	"Taxe d'apprentissage"	0	0	142.31	0
+6351100	"Contribution économique territoriale (CET)"	0	0	2461	0
+6358300	"Taxes ordures ménagères"	0	0	882	0
+6411000	"Salaires du personnel"	0	0	44232.21	0
+6411900	"Rémunération des gérants"	0	0	184509.72	0
+6412500	"Provision pour congés payés"	0	0	2152.46	0
+6413000	"Primes et gratifications"	0	0	-598.58	0
+6413900	"Primes et gratifications gérants"	0	0	-8000	0
+6414030	"Indemnités et avant divers personnel"	0	0	442.24	0
+6451000	"Cotisation Urssaf salariés"	0	0	2024.24	0
+6451010	"Cotisation Urssaf gérants"	0	0	13080.24	0
+6452010	"Cotisation mutuelle personnel"	0	0	585.9	0
+6452020	"Cotisation mutuelle gérants"	0	0	1670.4	0
+6453020	"Cotisation retraite non cadre"	0	0	2934.37	0
+6453030	"Cotisation retraite Tr A gérants"	0	0	7531	0
+6454000	"Cotisation assedic"	0	0	2337.94	0
+6455000	"Charges sociales/prov sur primes"	0	0	-1457	0
+6458000	"Charges sur provision congés payés"	0	0	856.65	0
+6475000	"Médecine du travail"	0	0	600	0
+6580000	"Charges diverses de gestion courante"	0	0	59.99	0
+6581000	"Différence de caisse en moins"	0	0	1002.07	0
+6583100	Grivèlerie	0	0	647.16	0
+6585000	"Faux billets"	0	0	50	0
+6588040	"Différences de règlement/fourn."	0	0	0.89	0
+6611000	"Intérêts des emprunts"	0	0	306.79	0
+6617000	"Intérêts / cautions"	0	0	1700	0
+6712000	"Pénalités amendes déductibles"	0	0	902.2	0
+6713000	"Dons, libéralités"	0	0	2950	0
+6811200	"Dotation amortissements immo corp."	0	0	26151.99	0
+7060120	"Main d'uvre autres"	0	0	-170.39	0
+7060140	"Dépoussiérage (hors mandat)"	0	0	-647.49	0
+7060200	"Lavages haute pression"	0	0	-6755.03	0
+7070010	"Ventes Carburant"	0	0	-4575299.74	0
+7070040	"Ventes fioul"	0	0	-19059.35	0
+7070100	"Ventes huiles"	0	0	-15469.28	0
+7070150	"Ventes autres forfaits"	0	0	-41.66	0
+7070210	"Ventes gaz"	0	0	-130184.89	0
+7070220	"Ventes AD Blue hors mandat"	0	0	-52210.5	0
+7070260	"Ventes batteries"	0	0	-897.24	0
+7070300	"Ventes accessoires boutique auto"	0	0	-6963.87	0
+7070400	"Ventes radio K7 CB"	0	0	-2702.87	0
+7070500	"Ventes alimentation TR"	0	0	-1198.97	0
+7070510	"Ventes confiserie bonbons TN"	0	0	-9854.98	0
+7070900	"Ventes boissons sans alcool 5,5"	0	0	-15563.18	0
+7070940	"Ventes boissons alcoolisées TN"	0	0	-16830.76	0
+7071030	"Ventes produits frais TSR"	0	0	-4731	0
+7071031	"Ventes produits frais TR7"	0	0	-1640.7	0
+7071050	"Ventes sandwiches"	0	0	-3333.95	0
+7071320	"Ventes bazar, hygiène, santé TN"	0	0	-7119.47	0
+7071321	"Ventes bazar, hygiène santé TR"	0	0	-76.31	0
+7071340	"Ventes produits d'entretien auto"	0	0	-16974.57	0
+7071450	"Ventes bois"	0	0	-1664.31	0
+7082030	"Commissions gas oïl"	0	0	-38623.87	0
+7082080	"Commissions super SP 95"	0	0	-6274.4	0
+7082110	"Commissions super SP 98"	0	0	-3671.88	0
+7082120	"Commissions Excellium"	0	0	-5635.31	0
+7082180	"Commissions relais colis"	0	0	-8119.55	0
+7082280	"Commissions distributeurs automat."	0	0	-1292.13	0
+7082301	"Commissions café route"	0	0	-68.89	0
+7082600	"Commissions lavages multiprogramme"	0	0	-7431.62	0
+7082710	"Commissions GR FOD"	0	0	-497.32	0
+7083060	"Commissions sur locations véhicule"	0	0	-10112.68	0
+7085000	"Port et frais accessoires facturés"	0	0	-1895.34	0
+7088100	"Recettes jeux compagnie TN"	0	0	-1168.63	0
+7401000	"Aide à l'emploi"	0	0	-4416.68	0
+7580000	"Produits divers de gestion courante"	0	0	-866.17	0
+7588040	"Différences de règlement / fourn."	0	0	-2.87	0
+7770000	"Quote-part subventions d'invest."	0	0	-1224	0
+7911000	"Transferts de charges (marges )"	0	0	-8020	0
+7915700	"Transf.de ch.(salaires du personnel)"	0	0	-1532.26	0

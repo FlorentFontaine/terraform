@@ -1,0 +1,121 @@
+.debug-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 53px;
+    width: 53px;
+    background: #7CB9E8 !important;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    z-index: 999999;
+}
+
+.fa-bug {
+    font-size: 3em;
+    color: white;
+}
+
+#debug .fa {
+    font-size: 2em!important;
+    padding-right: 5px;
+    vertical-align: sub;
+}
+
+#debug .fas {
+    font-size: 1.2em!important;
+    padding-right: 5px;
+    vertical-align: middle;
+}
+
+.bg-dark {
+    background-color: #343a40!important;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+.justify-content-between {
+    justify-content: space-between!important;
+}
+
+.navbar {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    z-index: 999999;
+}
+
+.navbar-collapse {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.navbar-brand {
+    color: #7CB9E8;
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-right: 3rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.navbar-brand:hover, .nav-item:hover {
+    color : cornflowerblue !important;
+}
+
+.navbar-fixed-bottom {
+    bottom: -1px;
+    position: absolute;
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+    margin-right: 2rem;
+    -webkit-text-decoration-skip: objects;
+}
+
+.nav-item span {
+    font-size: medium;
+}
+
+.navbar-toggler:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.navbar-light .navbar-toggler {
+    color: rgba(0,0,0,.5);
+    border-color: rgba(0,0,0,.1);
+}
+
+.navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}

@@ -1,0 +1,42 @@
+{% extends('base.html.twig') %}
+
+{% block title "PDV" %}
+
+{% block main %}
+
+    <div class="content">
+        <h2>{{ "Liste des " ~ lieux | length ~ " PDV" }}</h2>
+    </div>
+    <div class="content">
+        <table class="tabBalance bilan">
+            <thead>
+            <tr>
+                <th class="EnteteTab">
+                    <div class="div90"></div>
+                    Code
+                </th>
+                <th class="EnteteTab">
+                    <div class="div300"></div>
+                    PDV
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set i = 0 %}
+            {% for lieu in lieux %}
+                {% set class = i % 2 ? "bdligneimpaireTD" : "bdlignepaireTD" %}
+                <tr class="{{ class }}">
+                    <td class="center">
+                        {{ lieu.LIE_CODE }}
+                    </td>
+                    <td>
+                        {{ lieu.LIE_NOM }}
+                    </td>
+                </tr>
+                {% set i = i + 1 %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

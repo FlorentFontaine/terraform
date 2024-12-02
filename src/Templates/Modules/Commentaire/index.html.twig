@@ -1,0 +1,145 @@
+{% extends('base.html.twig') %}
+
+{% block title %}Commentaire{% endblock %}
+
+{% block main %}
+	<div id="module-commentaire">
+		<div class="content">
+			<div id="buttons-container">
+				<a href="/commentaire/section/synthese" class="button-spring ">Synthèse</a>
+				<a href="/commentaire/section/masse-salariale" class="button-spring">Masse Salariale</a>
+				<a href="/commentaire/section/charges" class="button-spring">Charges</a>
+				<a href="/commentaire/section/produits" class="button-spring">Produits</a>
+				<a href="/commentaire/section/bilan" class="button-spring">Bilan</a>
+				<a href="/commentaire/section/previsualisation" class="button-spring" style="background-color: #2799ff !important;color: white;">Prévisualisation</a>
+			</div>
+		</div>
+		{% if cabinetComptable %}
+			<div id="info-cabinet">
+				<div>
+					<h5>{{ session(["station_STA_SARL"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}</h5>
+					<h5>{{ session(["station_STA_ADR1"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}</h5>
+					<h5>{{ session(["station_STA_CP"]) }} {{ session(["station_STA_VILLE"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}</h5>
+					<h5>Gérant : {{ session(["station_STA_GERANT"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}</h5>
+					<h5>{{ session(["station_STA_TEL"]) | convert_encoding('UTF-8', 'ISO 8859-1') }} - {{ session(["station_STA_MAIL"]) | convert_encoding('UTF-8', 'ISO 8859-1') }}</h5>
+				</div>
+				<div>
+					<h5>{{ cabinetComptable.CAB_NOM | convert_encoding('UTF-8', 'ISO 8859-1') }}</h5>
+					<h5>{{ cabinetComptable.CAB_ADR1 | convert_encoding('UTF-8', 'ISO 8859-1') }}</h5>
+					<h5>{{ cabinetComptable.CAB_CP }} {{ cabinetComptable.CAB_VILLE | convert_encoding('UTF-8', 'ISO 8859-1') }}</h5>
+					<h5>Collaborateur: {{ cabinetComptable.CC_NOM | convert_encoding('UTF-8', 'ISO 8859-1')}}</h5>
+					<h5>{{ cabinetComptable.CC_MAIL | convert_encoding('UTF-8', 'ISO 8859-1') }}</h5>
+				</div>
+			</div>
+		{% endif %}
+		<div id="page">
+			<div id="page-container">
+				{% for section, mesStructures in commentaires.structures %}
+					<div class="title">{{ section | upper | replace({"-" : " "}) }}</div>
+					<div class="content-commentaire">
+						{% for structure in mesStructures %}
+							<div class="group">
+								<div class="title-group">{{ structure.CMS_CATEGORIE | convert_encoding('UTF-8', 'ISO 8859-1') }}</div>
+								<div class="cml">
+									<div class="fixe_month">
+										{% if structure.type == "liste" %}
+											<ul>
+												{% for content in structure.contents %}
+													<li>{{ content | raw }}</li>
+												{% endfor %}
+											</ul>
+										{% elseif  structure.type == "table" %}
+											{% for content in structure.contents %}
+												<h4>{{ content.titre | raw }}</h4>
+												<table class="tabCommentaire">
+													<tr class="EnteteTab">
+														{% for index, entete in content.entete %}
+															<th style="{% if index != 0 %}width:100px;{% endif %}">{{ entete | raw }}</th>
+														{% endfor %}
+													</tr>
+													{% for ligne in content.lignes %}
+														<tr>
+															{% for index, case in ligne %}
+																<td class="{% if index != 0 %}right{% endif %}">{{ case | convert_encoding('UTF-8', 'ISO 8859-1') | raw }}</td>
+															{% endfor %}
+														</tr>
+													{% endfor %}
+												</table>
+											{% endfor %}
+										{% else %}
+											<p>{{ structure.contents | raw }}</p>
+										{% endif %}
+									</div>
+									{% for commentaire in structure.commentaires %}
+										<div id="CML{{ commentaire.CML_ID }}" class="cml-group">
+											<div class="intitule">
+												<span class="pen-commentaire commentaires-libre" data-title="{{ structure.CMS_CATEGORIE | convert_encoding('UTF-8', 'ISO 8859-1') }}" data-type="{{ section }}" data-code="{{ commentaire.CMS_ID }}" data-id="{{ commentaire.CML_ID }}">&#9998;</span>
+												<label id="CML_INTITULE_{{ commentaire.CML_ID }}" for="{{ commentaire.CML_ID }}">{{ commentaire.CML_INTITULE }}</label>
+											</div>
+											<div class="fixe">
+												<div id="CML_COMMENTAIRE_{{ commentaire.CML_ID }}" class="commentaire" style="height:25px">
+													<p>{{ commentaire.CML_COMMENTAIRE | raw }}</p>
+												</div>
+											</div>
+										</div>
+									{% endfor %}
+								</div>
+								<div class="commentaires-libre" data-title="{{ structure.CMS_CATEGORIE | convert_encoding('UTF-8', 'ISO 8859-1') }}" data-type="{{ section }}" data-code="{{ structure.CMS_ID }}" data-id="new">
+									&plus; &nbsp;
+									Ajouter un commentaire libre
+								</div>
+								<input type='hidden' name='code' value='{{ structure.CMS_ID }}'>
+								{% if structure.sousCommentaires %}
+									<div class="cmt">
+										<div class="title-cmt">Commentaires du tableau de {{ structure.typeCommentaires }}</div>
+										<div class="cmt-block">
+											{% for commentaire in structure.sousCommentaires %}
+												<div id="" class="cmt-content">
+													<div class="poste">
+														<div class="intitule">
+															<span class="pen-commentaire commentaires" data-type="{{ commentaire.poste.type }}" data-code="{{ commentaire.poste.codePoste }}" data-id="{{ commentaire.poste.commentaire.CMT_ID ?? "new" }}">&#9998;</span>
+															<label>
+																{{ commentaire.poste.libelle | convert_encoding('UTF-8', 'ISO 8859-1') }} :
+																<b>
+																	{{ commentaire.poste.resultat | number_format(2, ',', ' ') }} €
+																</b>
+															</label>
+														</div>
+														<div class="saisie">
+															<div id="{{ commentaire.poste.commentaire.CMT_ID }}" class="commentaire" style="height:0px">
+																<p>{{ commentaire.poste.commentaire.CMT_COMMENTAIRE | raw }}</p>
+															</div>
+														</div>
+													</div>
+													</br>
+													<div class="comptes">
+														<div class="cmt-group">
+															{% for compte in commentaire.comptes %}
+																<div class="intitule">
+																	<label>{{ compte.libelle | convert_encoding('UTF-8', 'ISO 8859-1') }} :
+																		<b>
+																			{{ compte.resultat | number_format(2, ',', ' ') }} €
+																		</b>
+																	</label>
+																</div>
+																<div class="saisie">
+																	<div id="" class="commentaire" style="height:25px">
+																		<p>{{ compte.commentaire.CMT_COMMENTAIRE | raw }}</p>
+																	</div>
+																</div>
+															{% endfor %}
+														</div>
+													</div>
+												</div>
+											{% endfor %}
+										</div>
+									</div>
+								{% endif %}
+							</div>
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

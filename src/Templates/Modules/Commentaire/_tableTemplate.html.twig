@@ -1,0 +1,25 @@
+<h3>
+    {{ detail.poste.libelle | convert_encoding('UTF-8', 'ISO 8859-1') }} ({{ detail.poste.resultat | number_format(0, ',', ' ') }} €)
+</h3>
+
+<div class="summernote">{{ detail.poste.commentaire.CMT_COMMENTAIRE | raw }} </div>
+
+<input type='hidden' name='id' value='{{ detail.poste.commentaire.CMT_ID ?? 'new' }}'>
+<input type='hidden' name='type' value='{{ detail.poste.type }}'>
+<input type='hidden' name='code' value='{{ detail.poste.id }}'>
+
+<div style="padding-left:50px;">
+	{% for compte in detail.comptes %}
+		<div>
+			<h4>
+                {{  compte.numero }} - {{ compte.libelle | convert_encoding('UTF-8', 'ISO 8859-1') }} ({{ compte.resultat | number_format(0, ',', ' ') }} €)
+            </h4>
+
+			<div class="summernote">{{ compte.commentaire.CMT_COMMENTAIRE | raw }} </div>
+            
+			<input type='hidden' name='id' value='{{ compte.commentaire.CMT_ID ?? 'new' }}'>
+			<input type='hidden' name='type' value='{{ compte.type }}'>
+			<input type='hidden' name='code' value='{{ compte.id }}'>
+		</div>
+	{% endfor %}
+</div>

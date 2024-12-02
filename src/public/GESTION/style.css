@@ -1,0 +1,313 @@
+
+/* ------------ */
+/*    GLOBAL    */
+/* ------------ */
+
+body {
+    overflow: auto;
+}
+
+.titresection_gestion {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    line-height: 40px;
+    width: 100%;
+    border-bottom: 1px solid red;
+    font-size: x-large;
+    text-align: center;
+    padding: 20px 0 4px 0;
+    margin-bottom: 10px;
+    font-weight: bolder;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,0) 23%, rgba(255,255,255,1) 24%, rgba(255,255,255,1) 100%);
+}
+
+.titresection_gestion span {
+    margin-left: 200px;
+}
+
+.div-center {
+    text-align: -webkit-center;
+}
+
+
+/* ------------ */
+/*  Facturation */
+/* ------------ */
+
+#tableFacturation {
+    border: 1px solid silver;
+    border-collapse: collapse;
+}
+
+#tableFacturation tr {
+    line-height: 20px;
+}
+
+#tableFacturation .bdListeEnteteTD td {
+    text-transform: uppercase;
+    border-bottom: 1px solid silver;
+}
+
+#tableFacturation td {
+    border-right: 1px solid silver;
+    padding-left: 5px;
+}
+
+#formFacturation {
+    margin-top: 60px;
+    margin-bottom: 10px;
+    width: 550px;
+    border: 1px solid #b4b4b4;
+    background-color: #e4e4e4;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+#formFacturation span {
+    font-weight: bold;
+    display: inline-block;
+    width: 70px;
+    text-align: left;
+    margin-left: 5px;
+}
+
+input[type=submit]:not(.button-spring) {
+    min-width: 70px;
+    font-size: 1em;
+}
+
+.bdListeEnteteTD td {
+    text-transform: uppercase;
+}
+
+/* ------------ */
+/* Utilisateurs */
+/* ------------ */
+
+#container {
+    margin-top: 75px;
+    overflow-y: scroll;
+}
+
+#filters {
+    padding: 0 10px;
+    width: 1500px;
+    margin: auto;
+}
+
+#filters select {
+    margin-right: 20px;
+}
+
+#listContainer {
+    padding: 10px;
+    width: 1500px;
+    margin: auto;
+}
+
+#listContainer table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 10px;
+}
+
+#listContainer .tabdatas {
+    overflow-y: scroll;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    height: 400px;
+}
+
+#listContainer .tabdatas table {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    table-layout: fixed;
+}
+
+#listContainer table th {
+    border-left: 1px solid white;
+    background-color: #7CB9E8;
+    color: white;
+    padding: 8px;
+}
+
+#listContainer table th:first-child,
+#listContainer table td:first-child {
+    border-left: none;
+}
+
+#listContainer table td:last-child {
+    border-right: none;
+}
+
+#listContainer table tr:first-child td {
+    border-top: none;
+}
+
+#listContainer table tr:last-child td {
+    border-bottom: none;
+}
+
+#listContainer table .impaire {
+    background-color: #e5e5e5;
+}
+
+#listContainer table tbody tr:hover {
+    background-color: #d5ffd5;
+}
+
+#listContainer table tr{
+    height: 41.5px;
+}
+
+#listContainer table td {
+    border: 1px solid black;
+    padding: 8px;
+    vertical-align: middle;
+    white-space: wrap;
+}
+
+#listContainer .entete th {
+    padding: 16px;
+}
+
+#listContainer form {
+    display: inline-block;
+}
+
+#formUser {
+    width: 100%;
+    font-size: 12px;
+}
+
+#formUser .formDiv {
+    margin: 5px auto;
+}
+
+#formUser .formDiv .formLabel {
+    width: 150px;
+    display: inline-block;
+}
+
+#formUser .formDiv .formInputSelect {
+    width: 300px;
+    display: inline-block;
+}
+
+#formUser .separator {
+    height: 10px;
+}
+
+#formUser #verifMail {
+    margin-left: 155px;
+    font-size: 0.8em;
+    color: red;
+}
+
+#formDeleteUser {
+    white-space: normal !important;
+}
+
+#filters {
+    display: flex;
+    vertical-align: middle;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+
+#filters .flex, #listContainer .flex {
+    display: flex;
+}
+
+#listContainer .flex.flex-center {
+    justify-content: center;
+    padding-top: 25px;
+}
+
+#listContainer .flex.flex-end {
+    justify-content: end;
+    padding-top: 25px;
+}
+
+#filters .flex label, #listContainer .flex label {
+    padding-top: 5px;
+    padding-right: 5px;
+    font-size: 16px;
+}
+
+#listContainer form {
+    width: 100%;
+}
+
+#listContainer .flex {
+    justify-content: space-between;
+}
+
+#listContainer .form-group {
+    width: 50%;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+#listContainer .form-group label {
+    width: 25%;
+    display: inline-block;
+}
+
+#listContainer .form-group input {
+    width: 70%;
+    background-color: white;
+}
+
+#listContainer .form-group select {
+    width: 71%;
+    min-width: 71%;
+    display: inline-block;
+}
+
+.list-container-responsive {
+    width: 80% !important;
+}
+
+.border-form {
+    border: 1px solid #b4b4b4;
+    background-color: #e4e4e4;
+    padding: 15px 10px !important;
+    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.2);
+    margin-bottom: 30px !important;
+}
+
+.bandeau {
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #7CB9E8;
+    color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 8px;
+    margin-bottom: 25px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 25px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-align: center;
+    width: 50%;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+#dialog {
+    display: none;
+}

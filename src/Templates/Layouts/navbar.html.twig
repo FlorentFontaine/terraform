@@ -1,0 +1,573 @@
+<script type="text/javascript">
+    function secureLocation(btn, opt) {
+        document.location.href = "?optall=" + opt;
+    }
+
+    $(document).ready(function () {
+        // Sélectionnez toutes les divs cibles que vous souhaitez observer
+        const targetDivs = $('.dropdown-content');
+
+        // Options pour l'observateur
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        // Fonction de rappel pour traiter les changements d'intersection
+        const callback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // La div est visible, changer le background de son parent
+                    let parent = $(entry.target).prev();
+                    parent.css("background-color", "#7CB9E8").css("color", "white");
+                    parent.removeClass('dropbtn');
+                    parent.addClass('dropbtn-visible');
+
+                } else {
+                    // La div n'est pas visible, retirer le background de son parent
+                    let parent = $(entry.target).prev();
+                    parent.css("background-color", "transparent").css("color", "#09549C");
+                    parent.removeClass('dropbtn-visible');
+                    parent.addClass('dropbtn');
+                }
+            });
+        };
+
+        // Créer une instance de l'observateur pour chaque div cible
+        targetDivs.each(function () {
+            const observer = new IntersectionObserver(callback, options);
+            observer.observe(this);
+        });
+    });
+</script>
+
+<ul id="navbar">
+    <li>
+        <a href="
+        {% if session(['LOCKERS_MAIL']) != session(['Utilisateur', 'Mail']) %}
+            /login/login.php?retrieveAdmin=1
+        {% elseif  session(['NB_ACCOUNTS']) > 1 %}
+            /login/chooseAccount.php
+        {% else %}
+            /login/login.php?logout=1
+        {% endif %}
+        " class="coupure">
+            <img title="D&eacute;connexion" src="/images/logout.gif" alt="deconnexion"/>
+        </a>
+    </li>
+    <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Report</a>
+        <div class="dropdown-content">
+            {% if session(['Utilisateur', 'LockersAdmin']) %}
+                <a href="/GESTION/index.php">
+                    Acc&eacute;der &agrave; l'administration
+                </a>
+                <hr/>
+            {% endif %}
+            {% if not isAuthorized('station') %}
+                <a href="/StationBack/Liste.php?notselect=1">
+                    Liste des soci&eacute;t&eacute;
+                </a>
+            {% endif %}
+            {% if not isAuthorized('lieu') %}
+                <a href="/pdv">
+                    Liste des PDV
+                </a>
+            {% endif %}
+            {% if not isAuthorized('station') %}
+                <hr/>
+                <a href="/SuiviBack/Liste.php?notselect=1">
+                    Suivi d'activit&eacute;
+                </a>
+            {% endif %}
+            {% if infos('Type') == "comptable" %}
+                <hr/>
+                <a href="/LiaisonComptable/liaisoncomptable.php?notselect=1">
+                    Equivalences comptes
+                </a>
+            {% endif %}
+        </div>
+    </li>
+    <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn coupure">Etude</a>
+        <div class="dropdown-content">
+            <a href="/BenchMark/Liste.php?etude=consolidation&notselect=1">
+                Consolidation
+            </a>
+            <a href="/BenchMark/Liste.php?etude=benchmark&notselect=1">
+                Benchmark
+            </a>
+        </div>
+    </li>
+    {% if session(['station_DOS_NUM']) %}
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Ma Soci&eacute;t&eacute;</a>
+            <div class="dropdown-content">
+                <a href="/EtatCivil/index.php">
+                    Etat civil
+                </a>
+                <a href="/GardeBack/Garde.php">
+                    Informations Soci&eacute;t&eacute;
+                </a>
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Tableau de Gestion</a>
+            <div class="dropdown-content">
+                <a href="/RenseignementBack/Liste.php">
+                    Renseignements compl&eacute;mentaires
+                </a>
+                <hr/>
+                <a href="/synthese/Liste.php?cumul=1">
+                    Synth&egrave;se
+                </a>
+                <a href="/SyntheseProjection/Liste.php">
+                    Projection
+                </a>
+                <hr/>
+                <a href="/ChargesMensuellesBack/Liste.php?Produits=1">
+                    Produits de l'exercice
+                </a>
+                <a href="/MargeBack/Liste.php">
+                    Calcul des marges
+                </a>
+                <a href="/ChargesMensuellesBack/Liste.php">
+                    Charges de l'exercice
+                </a>
+                <hr/>
+                <a href="/Bilan/Liste.php">
+                    Bilan
+                </a>
+                <hr />
+                <a href="/ChargesDetailBack/Liste.php?Produits=1">
+                    D&eacute;tail des comptes produits
+                </a>
+                <a href="/ChargesDetailBack/Liste.php">
+                    D&eacute;tail des comptes charges
+                </a>
+
+                {%  if session(['NbAno']) %}
+                    <hr/>
+                    <a href="/Anomalie/MAnomalie.php">
+                        <b style="color:red">Anomalies</b>
+                    </a>
+                {% endif %}
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Gestion CRP</a>
+            <div class="dropdown-content">
+                <a href="/GestionCRP/index.php?page=nouveau_crp">
+                    Nouveau CRP
+                </a>
+                <hr />
+                <a href="/GestionCRP/index.php">
+                    Liste des CRP
+                </a>
+                <a href="/GestionCRP/index.php?page=crp_en_cours">
+                    Modifier le CRP en cours
+                </a>
+                <a href="/PrevBack/Liste.php">
+                    Consulter le CRP en cours
+                </a>
+                <hr/>
+                <a href="/ObjectifSARL/?param1=Produits">
+                    Objectifs chiffre d'affaire
+                </a>
+                <a href="/ObjectifSARL/?param1=Produits&param2=1">
+                    Objectifs marges
+                </a>
+                <a href="/ObjectifSARL/?param1=Charges">
+                    Objectifs Charges
+                </a>
+            </div>
+        </li>
+
+        {% if modules.commentaire %}
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Commentaire</a>
+                <div class="dropdown-content">
+                     {% if session(['nbAno']) != 0 %}
+                         <a href="/commentaire/section/synthese">
+                             1. Synth&egrave;se
+                         </a>
+                         <a href="/commentaire/section/produits">
+                             2. Produits
+                         </a>
+                         <a href="/commentaire/section/masse-salariale">
+                             3. Masse Salariale
+                         </a>
+                         <a href="/commentaire/section/charges">
+                             4. Charges
+                         </a>
+                         <a href="/commentaire/section/bilan">
+                             5. Bilan
+                         </a>
+                         <a href="/commentaire/section/previsualisation">
+                             Pr&eacute;visualisation
+                         </a>
+                         <hr />
+                    {% endif %}
+                    <a href="/commentaire/export" target="_blank">
+                        Exporter les commentaires
+                    </a>
+                </div>
+            </li>
+        {% endif %}
+
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Balance</a>
+            <div class="dropdown-content">
+                {% if correctionBal %}
+                    {% set correctionBalJava = true %}
+                {% else %}
+                    {% set correctionBalJava = false %}
+                {% endif %}
+                <a href="/BalanceBack/Liste.php?classe=all" onclick="changeClasse('all',{{ correctionBalJava }})">
+                    Tout
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=1" onclick="changeClasse('1',{{ correctionBalJava }})">
+                    Classe 1
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=2" onclick="changeClasse('2',{{ correctionBalJava }})">
+                    Classe 2
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=3" onclick="changeClasse('3',{{ correctionBalJava }})">
+                    Classe 3
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=4" onclick="changeClasse('4',{{ correctionBalJava }})">
+                    Classe 4
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=5" onclick="changeClasse('5',{{ correctionBalJava }})">
+                    Classe 5
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=60-61" onclick="changeClasse('60-61',{{ correctionBalJava }})">
+                    Classe 60-61
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=62-63" onclick="changeClasse('62-63',{{ correctionBalJava }})">
+                    Classe 62-63
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=64-65" onclick="changeClasse('64-65',{{ correctionBalJava }})">
+                    Classe 64-65
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=66-67" onclick="changeClasse('66-67',{{ correctionBalJava }})">
+                    Classe 66-67
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=68-69" onclick="changeClasse('68-69',{{ correctionBalJava }})">
+                    Classe 68-69
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=70" onclick="changeClasse('70',{{ correctionBalJava }})">
+                    Classe 70
+                </a>
+                <a href="/BalanceBack/Liste.php?classe=74-79" onclick="changeClasse('74-79',{{ correctionBalJava }})">
+                    Classe 74-79
+                </a>
+
+                {% if isAuthorized('impression') == false %}
+                    <hr/>
+                    <a href="/BalanceBack/Liste.php?AnoSensErrone=1&impression=1">
+                        Liste comptes erron&eacute;s
+                    </a>
+                {% endif %}
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Exercice</a>
+            <div class="dropdown-content">
+                {% if isAuthorized('Balance') == false %}
+                    <a href="/StationBack/formulaire2.php">
+                        Cr&eacute;er un nouvel exercice
+                    </a>
+                    {% set Deb = session(['station_DOS_DEBEX']) | date('m/Y') %}
+                    {% set Fin = session(['station_DOS_FINEX']) | date('m/Y') %}
+                    {% if Deb == Fin %}
+                        {% set Exercice = Deb %}
+                    {% else %}
+                        {% set Exercice = Deb ~ ' au ' ~ Fin %}
+                    {% endif %}
+                    <a href="/StationBack/formulaire2.php?UpdateDossier={{ session(['station_DOS_NUM']) }}">
+                        Modifier dates exercice {{ Exercice }}
+                    </a>
+                    <hr/>
+                {% endif %}
+
+                {% set MesExo = getAllExerciceByStation() %}
+
+                {% for UnExo in MesExo %}
+                    {% set Deb = UnExo.DOS_DEBEX | date("m/Y") %}
+                    {% set Fin = UnExo.DOS_FINEX | date("m/Y") %}
+
+                    {% if Deb == Fin %}
+                        {% set Exercice = Deb %}
+                    {% else %}
+                        {% set Exercice = Deb ~ ' au ' ~ Fin %}
+                    {% endif %}
+
+                    <a href="/StationBack/open.php?DOS_NUM={{ UnExo.DOS_NUM }}">
+                        {{ Exercice }}
+                        {% if UnExo.DOS_NUM == session(['station_DOS_NUM']) %}
+                            <img src="/images/ok.png" width="10" alt="V"/>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <a href="/ImprimBack/Liste.php">Impression</a>
+        </li>
+
+        {% if isAuthorized('outil') == false %}
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Outils</a>
+                <div class="dropdown-content">
+
+                    {% if isAuthorized('Balance') == false and session(['ModifOK']) %}
+                        <a href="/BalanceBack/Liste.php?import=1">
+                            Importer balance
+                        </a>
+                        <hr/>
+                        <a
+                                {% if session(['station_PREM_BAL']) %}
+                                    href="#"
+                                    onclick="customAlert(
+                                'Correction de balance','Veuillez importer la premi&egrave;re balance du dossier'
+                                )"
+                                {% else %}
+                                    {% set href = "/BalanceBack/Liste.php?correctionBal=1&classe=" %}
+                                    {% set href = href ~ (classe ? classe : "all") %}
+                                    {% set href = href ~ (initSessionBal == false ? "&initSessionBal=1" : "") %}
+                                    href="{{ href }}"
+                                {% endif %}
+                        >
+                            Correction balance r&eacute;cup&eacute;r&eacute;e
+                        </a>
+                    {% endif %}
+
+                    {% if session(['station_STA_DERNDOS']) == session(['station_DOS_NUM']) and session(['ModifOK']) or infos('Type') == "ADMIN" %}
+                        <a
+                                onmousedown="customAlert(
+                            'Suppression balance',
+                            'Supprimer la balance en cours ?'
+                            + '<br/><br/>ATTENTION : <br/>Cette action est irr\xe9versible !',
+                            function(){secureLocation('yes','suppbal')},
+                            'YESNO'
+                        )"
+                                href="#">
+                            Supprimer la derni&egrave;re balance de l'exercice
+                        </a>
+                        <hr />
+                    {% endif %}
+                    {% if isAuthorized('option') == false and session(['ModifOK']) %}
+                        <a
+                                onmousedown="customAlert(
+                                'Copie des taux de marge du pr&eacute;visionnel',
+                                'Copier les taux de marge du pr&eacute;visionnel ' +
+                                'dans les renseignements compl&eacute;mentaires ?'
+                                function(btn){secureLocation(btn,'copieTM')},
+                                'YESNO'
+                            )"
+                                href="#"
+                        >
+                            Copier les taux de marge du pr&eacute;visionnel
+                            dans les renseignements
+                        </a>
+                        <a
+                                onmousedown="customAlert(
+                                'Copie des stocks initiaux',
+                                'Copier les stocks initiaux de la balance dans les renseignements compl&eacute;mentaires ?',
+                                function(btn){secureLocation(btn,'copieSTI')},
+                                'YESNO'
+                            )"
+                                href="#"
+                        >
+                            Copier stocks initiaux dans les renseignements
+                        </a>
+                        <a
+                                onmousedown="customAlert(
+                                'Copie des stocks finaux',
+                                'Copier les stocks finaux de la balance dans les renseignements compl&eacute;mentaires ?',
+                                function(btn){secureLocation(btn,'copieSTF')},
+                                'YESNO'
+                            )"
+                                href="#"
+                        >
+                            Copier stocks finaux dans les renseignements
+                        </a>
+                        <hr/>
+                    {% endif %}
+                    <a href="/RenseignementBack/Liste.php?OubliMarge=1"
+                       style="{{ session(['AnoStyle', 'oublimarge']) }}">
+                        Recherche oubli % de marge
+                    </a>
+                    <a href="/RenseignementBack/Liste.php?PrevTxModifie=1"
+                       style="{{ session(['RemStyle', 'PrevTxModifie']) }}">
+                        Recherche les taux de marge diff&eacute;rents du pr&eacute;visionnel
+                    </a>
+                    <a href="/RenseignementBack/Liste.php?AnoStockFinalZero=1"
+                       style="{{ session(['AnoStyle', 'AnoStockFinalZero']) }}">
+                        Recherche oubli saisie stocks finaux
+                    </a>
+                    <a href="/RenseignementBack/Liste.php?AnoStockInit=1"
+                       style="{{ session(['AnoStyle', 'StockInit']) }}">
+                        Recherche erreur stocks initiaux
+                    </a>
+                    <a href="/RenseignementBack/Liste.php?AnoStockFinal=1"
+                       style="{{ session(['AnoStyle', 'StockFinal']) }}">
+                        Recherche erreur stocks finaux
+                    </a>
+                    <a href="/RenseignementBack/Liste.php?AnoVariationStock=1"
+                       style="{{ session(['AnoStyle', 'VariationStock']) }}">
+                        Recherche erreur var. stocks
+                    </a>
+                    <hr/>
+                    <a href="/RenseignementBack/Liste.php?AnoTauxSup100=1"
+                       style="{{ session(['AnoStyle', 'tauxsup100']) }}">
+                        Recherche % de marge sup. &agrave; 100
+                    </a>
+                    <a href="/BalanceBack/Liste.php?AnoSensErrone=1"
+                       style="{{ session(['AnoStyle', 'AnoSens']) }}">
+                        Recherche compte avec sens erron&eacute;
+                    </a>
+                    {% if isAuthorized('option') == false %}
+                        <hr/>
+                        <a
+                                onmousedown="customAlert(
+                                'Effacement du pr&eacute;visionnel',
+                                'Effacer le pr&eacute;visionnel ?',
+                                function(btn){secureLocation(btn,'delprevprod')},
+                                'YESNO'
+                            )"
+                                href="#">
+                            Effacer le pr&eacute;visionnel
+                        </a>
+                        <a
+                                onmousedown="customAlert(
+                                'Recalculer historique pr&eacute;visionnel',
+                                'ATTENTION : Cette action est irr&eacute;versible !',
+                                function(btn){secureLocation(btn,'refactprev')},
+                                'YESNO'
+                            )"
+                                href="#">
+                            Recalculer historique pr&eacute;visionnel
+                        </a>
+                    {% endif %}
+
+                    {% if isAuthorized('imp') == false %}
+                        {% if session(['NbAno']) %}
+                            <hr/>
+                            <a style="color:red"
+                               href="/ImprimBack/Liste.php?optall=majb&validMAJBase=1"
+                            >
+                                Ex&eacute;cuter la MAJ Base
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </li>
+        {% endif %}
+
+
+        {% if isAuthorized('outil') == false %}
+            <li class="dropdown">
+                <a href="#">
+                    Bal. de d&eacute;mo&nbsp;
+                    <svg xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 512 512">
+                        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                    </svg>
+                </a>
+            </li>
+        {% endif %}
+
+
+        {% if session(['MoisHisto']) and session(['station_STA_NUM']) %}
+            <li style="float:right">
+                <form method="post" class="form" name="formMoisDossier" id="formMoisDossier">
+                    <div id="periode">
+                        P&eacute;riode :
+                    </div>
+                    <div class="select">
+                        <script type="text/javascript">
+                            function changeMoisHisto() {
+                                let selectMois = this.value;
+                                window.location = "/StationBack/open.php?MoisHisto=" + selectMois + "&redirect=" + window.location.pathname + "&DOS_NUM=" + {{ session(['station_DOS_NUM']) }};
+                            }
+                        </script>
+                        <select name="moishisto" id="moishisto"
+                            onchange='changeMoisHisto.call(this);'
+                            style="font-size:12px;margin: 0;" tabindex="-1">
+                        {% set MesDateImport = getBalanceImportByDossier() %}
+                        {% if MesDateImport is defined %}
+
+                            {% set MesDateImport = MesDateImport|reverse %}
+                            {% set MesDateAffiche = [] %}
+                            {% set break = false %}
+                            {% for UneDate in MesDateImport %}
+                                {% if UneDate.BALI_DATE_MAJBASE == 0
+                                        and (session(['loged ']) == "station"
+                                            or (session(['User','Infos', 'Type']) == "agip"))
+                                %}
+                                    {% if not MesDateAffiche %}
+                                        {% set MessageBox = [
+                                            { "titre": "Report",
+                                            "message": "Vous ne pouvez pas consulter le dossier,<br/>le cabinet comptable n'a pas validé le premier mois.",
+                                            "fn": (session(['User','Infos','Type']) == "station") ? "function(){ window.location.href='/index.php' }" : "function(){ window.location.href='/StationBack/Liste.php' }"
+                                            }
+                                        ] %}
+                                    {% endif %}
+                                    {% set break = true %}
+                                {% endif %}
+
+                                {% set MesDateAffiche = MesDateAffiche|merge([UneDate]) %}
+
+                                {% if UneDate.BALI_DATE_MAJBASE == 0 %}
+                                    {% set break = true %}
+                                {% endif %}
+                            {% endfor %}
+
+                            {% set MesDateAffiche = MesDateAffiche|reverse %}
+                            {% set colorSituationSelect = colorSituation %}
+
+                            {% for UneDate in MesDateAffiche %}
+                                {% set select = (session(['MoisHisto']) == UneDate.BALI_MOIS) ? "selected='selected'" : "" %}
+
+                                <option value="{{ UneDate.BALI_MOIS }}" {{ select }}
+                                        {% if colorSituationSelect.UneDate.BALI_TYPE %}
+                                            style='background-color:{{ colorSituationSelect.UneDate.BALI_TYPE.color }}'
+                                        {% endif %}>
+                                    {{ UneDate.BALI_MOIS | replace({'-00' : '-01'}) | date("m/Y") }}
+                                </option>
+                            {% endfor %}
+
+                        {% else %}
+                            <option value="{{ session(['MoisHisto']) }}">
+                                {{ session(['MoisHisto']) | replace({'-00' : '-01'}) | date("m/Y") }}
+                            </option>
+                        {% endif %}
+                    </select>
+
+                        </select>
+                    </div>
+                    <script type="text/javascript">
+                        let selectMois = document.getElementById("moishisto");
+                        selectMois.style.background = selectMois.options.selectMois ? selectMois.options.selectMois.selectedIndex.style.background : null;
+                    </script>
+                </form>
+            </li>
+            <li style="float:right">
+                <a
+                    style="position:relative;padding-right: 40px;"
+                    href="/Anomalie/MAnomalie.php">
+                    Anomalies :
+                    <div class="notif-ano{% if session(['NbAno']) == false %}-ok {% endif %}">
+                        {{ session(['NbAno']) }}
+                    </div>
+                </a>
+            </li>
+        {% endif %}
+    {% endif %}
+</ul>

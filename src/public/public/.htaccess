@@ -1,0 +1,8 @@
+# Réécriture de l'URL
+RewriteEngine On
+RewriteRule ^ index.php [QSA,L]
+
+# Autorisation pour l'accès cross-origin
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, DELETE, OPTIONS"
+Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"

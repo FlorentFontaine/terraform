@@ -1,0 +1,30 @@
+<table class="tabBalance tabDetailPoste">
+	<tbody>
+		{% for poste, detail in detailPoste %}
+			<tr class="EnteteTab">
+				<td colspan="2" class="bolder" style="font-size:12px;">
+					{{ poste | convert_encoding('UTF-8', 'ISO 8859-1') | upper }}
+				</td>
+			</tr>
+
+			{% for posteLibelle, poste in detail %}
+				<tr class="bolder">
+					<td colspan="2">
+                        {{ posteLibelle | convert_encoding('UTF-8', 'ISO 8859-1') | upper }}
+                    </td>
+				</tr>
+
+				{% for compte in poste %}
+					<tr>
+						<td>
+                            <em>{{ compte.numero }}</em> &nbsp; {{ compte.libelle | convert_encoding('UTF-8', 'ISO 8859-1')  }}
+                        </td>
+						<td class="right">
+                            {{ compte.resultat ? compte.resultat | number_format(0, ',', ' ') : "" }}
+                        </td>
+					</tr>
+				{% endfor %}
+			{% endfor %}
+		{% endfor %}
+	</tbody>
+</table>
